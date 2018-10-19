@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'menus-side-menu',
@@ -7,10 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
   @Input() sidebarVisibility: Boolean;
+  @Output() sidebarVisibilityChange: EventEmitter<Boolean> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  visibilityChanged(event) {
+    console.log('changed to:' + event);
+    this.sidebarVisibilityChange.next(event);
   }
 
 }
