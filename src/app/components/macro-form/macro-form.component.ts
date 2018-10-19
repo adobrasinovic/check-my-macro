@@ -45,7 +45,7 @@ export class MacroFormComponent implements OnInit {
 
   }
 
-  formMacroString() {
+  private formMacroString() {
     const unit = this.selectedUnitOfMeasurement;
     let carbsString, fatsString, proteinsString;
 
@@ -64,12 +64,33 @@ export class MacroFormComponent implements OnInit {
     this.yourMacroString = ':' + carbsString + fatsString + proteinsString;
   }
 
-  createMacroForm() {
+  private createMacroForm() {
     this.macroForm = this.fb.group({
       carbs: [null, Validators.min(0)],
       proteins: [null, Validators.min(0)],
       fats: [null, Validators.min(0)]
+    }, {
+      validator: this.percentageSumValidator.bind(this)
     });
+  }
+
+   percentageSumValidator(form: FormGroup) {
+
+    console.log(form.validator);
+    if (this.unitOfMeasurement === 'g') {
+      return null;
+    }
+
+    const sum = form.controls.carbs.value + form.controls.proteins.value  + form.controls.fats.value;
+
+    if ( sum === 100) {
+      return null;
+    }
+
+    return {
+      currentSum: sum
+    };
+
   }
 
 }

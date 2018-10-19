@@ -53,6 +53,15 @@
         </div>
       </div>
 
+      <div *ngIf="macroForm.errors" class="ui message">
+          <div class="header">
+            Sum of your macro percentages must be 100
+          </div>
+          <p>
+            Current sum: {{ macroForm.errors.currentSum }}%.
+          </p>
+        </div>
+
       <button class="ui primary button" [disabled]="!macroForm.valid">
         Save
       </button>
