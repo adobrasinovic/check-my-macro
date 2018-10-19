@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  sidebarToggled = false;
+
+  onToggle() {
+    this.sidebarToggled = !this.sidebarToggled;
+  }
 }
