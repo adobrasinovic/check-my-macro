@@ -15,7 +15,6 @@ export class SideMenuComponent implements OnInit {
   }
 
   visibilityChanged(event) {
-    console.log('changed to:' + event);
     this.sidebarVisibilityChange.next(event);
   }
 
