@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'macro-form',
@@ -8,6 +8,15 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 })
 export class MacroFormComponent implements OnInit {
   macroForm: FormGroup;
+
+  macroSelected: boolean = false;
+  // values contain saved macro values and unit
+  selectedCarbsValue: number;
+  selectedProteinsValue: number;
+  selectedFatsValue: number;
+  selectedUnitOfMeasurement: string;
+  
+  yourMacroString: string;
 
   unitOfMeasurement: string = '%';
 
@@ -23,15 +32,43 @@ export class MacroFormComponent implements OnInit {
   }
 
   saveCurrentMacro() {
-    // if (this.unitOfMeasurement === '%') {
-    // }
+
+    const macroFormValue = this.macroForm.getRawValue();
+
+    this.macroSelected = true;
+    this.selectedCarbsValue = macroFormValue.carbs;
+    this.selectedFatsValue = macroFormValue.fats;
+    this.selectedProteinsValue = macroFormValue.proteins;
+    this.selectedUnitOfMeasurement = this.unitOfMeasurement;
+
+    this.formMacroString();
+
+  }
+
+  formMacroString() {
+    const unit = this.selectedUnitOfMeasurement;
+    let carbsString, fatsString, proteinsString;
+
+    if (this.selectedCarbsValue) {
+      carbsString = ' Carbohydrates: ' + this.selectedCarbsValue + unit;
+    }
+
+    if (this.selectedFatsValue) {
+      fatsString = ' Fats: ' + this.selectedFatsValue + unit;
+    }
+
+    if (this.selectedCarbsValue) {
+      proteinsString = ' Proteins: ' + this.selectedProteinsValue + unit;
+    }
+
+    this.yourMacroString = ':' + carbsString + fatsString + proteinsString;
   }
 
   createMacroForm() {
     this.macroForm = this.fb.group({
-      carbs: [null],
-      proteins: [null],
-      fats: [null]
+      carbs: [null, Validators.min(0)],
+      proteins: [null, Validators.min(0)],
+      fats: [null, Validators.min(0)]
     });
   }
 

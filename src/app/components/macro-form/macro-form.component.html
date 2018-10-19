@@ -1,6 +1,9 @@
 <div class="ui grid contaner">
   <div class="row">
-    <h2>Your macro</h2>
+    <h3>Your macro
+      <ng-container *ngIf="macroSelected">{{': Carbohydrates: ' + selectedCarbsValue + selectedUnitOfMeasurement +
+         ' Fats: ' + selectedFatsValue + selectedUnitOfMeasurement + ' Proteins: ' + selectedProteinsValue +selectedUnitOfMeasurement }}
+      </ng-container></h3>
   </div>
   <div class="row">
     <div class="ui top attached label">Choose your unit of measurement</div>
@@ -50,7 +53,7 @@
         </div>
       </div>
 
-      <button class="ui primary button">
+      <button class="ui primary button" [disabled]="!macroForm.valid">
         Save
       </button>
     </form>
