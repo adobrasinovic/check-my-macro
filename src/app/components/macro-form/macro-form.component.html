@@ -2,29 +2,61 @@
   <div class="row">
     <h2>Your macro</h2>
   </div>
-  <div class="five wide column">
-      <div class="ui right labeled input">
-          <input type="number" placeholder="Carbohydrates">
-          <div class="ui basic label">
-            %
+  <div class="row">
+    <div class="ui top attached label">Choose your unit of measurement</div>
+    <div class="ui buttons units">
+      <button class="ui button" (click)="changeUnitOfMeasurement('%')"
+        [ngClass]="{'active': unitOfMeasurement === '%'}">%</button>
+      <button class="ui button" (click)="changeUnitOfMeasurement('g')"
+        [ngClass]="{'active': unitOfMeasurement === 'g'}">g</button>
+    </div>
+  </div>
+  <div class="row centered">
+    <div *ngIf="unitOfMeasurement === 'g'" class="ui message">
+      <div class="header">
+        You have selected 'grams' as your units of measurement
+      </div>
+      <p>The values you enter are considered your 'max' macro values. You can
+        fill only the macronutrients that you want to limit.</p>
+    </div>
+    <form [formGroup]="macroForm" class="ui form"
+      (ngSubmit)="saveCurrentMacro()">
+      <div class="fields">
+        <div class="field">
+          <div class="ui right labeled input">
+            <input formControlName="carbs" type="number"
+              placeholder="Carbohydrates">
+            <div class="ui basic label">
+              {{unitOfMeasurement}}
+            </div>
           </div>
         </div>
-  </div>
-  <div class="five wide column">
-      <div class="ui right labeled input">
-          <input type="number" placeholder="Fats">
-          <div class="ui basic label">
-            %
+        <div class="field">
+          <div class="ui right labeled input">
+            <input formControlName="fats" type="number" placeholder="Fats">
+            <div class="ui basic label">
+              {{unitOfMeasurement}}
+            </div>
           </div>
         </div>
-  </div>
-  <div class="five wide column">
-      <div class="ui right labeled input">
-          <input type="number" placeholder="Protein">
-          <div class="ui basic label">
-            %
+        <div class="field">
+          <div class="ui right labeled input">
+            <input formControlName="proteins" type="number"
+              placeholder="Protein">
+            <div class="ui basic label">
+              {{unitOfMeasurement}}
+            </div>
           </div>
         </div>
+      </div>
+
+      <button class="ui primary button">
+        Save
+      </button>
+    </form>
+
   </div>
+
+
 
 </div>
