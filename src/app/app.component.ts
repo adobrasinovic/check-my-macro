@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'app';
   sidebarToggled = false;
 
+  // sidebar visibility depends on sidebarToggled variable
   onToggle() {
     this.sidebarToggled = !this.sidebarToggled;
   }

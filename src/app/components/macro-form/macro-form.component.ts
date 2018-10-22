@@ -15,9 +15,9 @@ export class MacroFormComponent implements OnInit {
   selectedProteinsValue: number;
   selectedFatsValue: number;
   selectedUnitOfMeasurement: string;
-  
   yourMacroString: string;
 
+  // we measure macros either in percentage or in max grams intake
   unitOfMeasurement: string = '%';
 
   // importing FormBuilder through dependecy injection
@@ -31,6 +31,7 @@ export class MacroFormComponent implements OnInit {
     this.unitOfMeasurement = value;
   }
 
+  // onformsubmit this function is called
   saveCurrentMacro() {
 
     const macroFormValue = this.macroForm.getRawValue();
@@ -45,6 +46,7 @@ export class MacroFormComponent implements OnInit {
 
   }
 
+  // presenting selected macros to the user as string
   private formMacroString() {
     const unit = this.selectedUnitOfMeasurement;
     let carbsString, fatsString, proteinsString;
@@ -74,9 +76,9 @@ export class MacroFormComponent implements OnInit {
     });
   }
 
+  // custom validator to check if percentage sum is 100, can be moved to separate component
    percentageSumValidator(form: FormGroup) {
 
-    console.log(form.validator);
     if (this.unitOfMeasurement === 'g') {
       return null;
     }

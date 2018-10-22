@@ -33,6 +33,9 @@
               {{unitOfMeasurement}}
             </div>
           </div>
+          <div *ngIf="macroForm?.controls['carbs'].errors?.min" class="ui pointing basic small label">
+              Value must be greater or equal to zero.
+            </div>
         </div>
         <div class="field">
           <div class="ui right labeled input">
@@ -41,6 +44,9 @@
               {{unitOfMeasurement}}
             </div>
           </div>
+            <div *ngIf="macroForm?.controls['fats']?.errors?.min" class="ui pointing basic small label">
+              Value must be greater or equal to zero.
+            </div>
         </div>
         <div class="field">
           <div class="ui right labeled input">
@@ -50,10 +56,13 @@
               {{unitOfMeasurement}}
             </div>
           </div>
+          <div *ngIf="macroForm?.controls['proteins'].errors?.min" class="ui pointing basic small label">
+              Value must be greater or equal to zero.
+            </div>
         </div>
       </div>
 
-      <div *ngIf="macroForm.errors" class="ui message">
+      <div *ngIf="macroForm.errors && unitOfMeasurement === '%'" class="ui message">
           <div class="header">
             Sum of your macro percentages must be 100
           </div>
