@@ -4,10 +4,10 @@
   </div>
   <div class="row">
       <form [formGroup]="mealPlanForm" class="ui form"
-      (ngSubmit)="submitRecipeForAnalysis()">
+      (ngSubmit)="submitMealForAnalysis()">
       <div class="fields">
           <div class="field">
-              <label>Recipe title</label>
+              <label>Meal title</label>
               <input type="text" formControlName="title">
             </div>
             <div class="field">
@@ -16,10 +16,13 @@
             </div>
       </div>
      
-
       <div class="field">
-          <label>Recipe</label>
-          <textarea formControlName="recipe"></textarea>
+          <label>Preparation instructions ( optional ) </label>
+          <textarea rows="2"></textarea>
+        </div>
+      <div class="field">
+          <label>Ingredients List</label>
+          <textarea rows="4" formControlName="ingrs"></textarea>
         </div>
       <button class="ui primary button" [disabled]="!mealPlanForm.valid">
         Add

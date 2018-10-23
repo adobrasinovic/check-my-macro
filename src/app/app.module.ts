@@ -15,6 +15,7 @@ import { MacroFormComponent } from './components/macro-form/macro-form.component
 
 import { NutritionService } from './services/nutrition.service';
 import { MealPlanFormComponent } from './components/meal-plan-form/meal-plan-form.component';
+import { MealsListComponent } from './components/meals-list/meals-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MealPlanFormComponent } from './components/meal-plan-form/meal-plan-for
     SideMenuComponent,
     HomeComponent,
     MacroFormComponent,
-    MealPlanFormComponent
+    MealPlanFormComponent,
+    MealsListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div class="ui grid container">
+<div class="ui relaxed small horizontal list">
+    <div *ngFor="let meal of mealList" class="item">
+      <div class="content"> <button (click)="removeFromMealList(meal)" class="ui compact icon button">
+            {{meal.title}} <i class="window close icon"></i>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>

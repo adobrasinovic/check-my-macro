@@ -2,6 +2,7 @@
   <!-- App description -->
   <div class="row">
     <h1 class="first">Check My Macros</h1>
+    <span class="left" id="edamam-badge" data-color="transparent"></span>
     <p>Check My Macros is intented for persons who already have their <b>macronutrients</b>
       planned out, and wanna plan out their meals or check if a specific recipe
       or set of recipes fits their macro plan.</p>
@@ -12,7 +13,12 @@
       <macro-form></macro-form>
     </div>
     <div class="column">
-      <meal-plan-form></meal-plan-form>
+      <!-- meal planning section -->
+      <meal-plan-form (mealAdded)="onMealAdded($event)"></meal-plan-form>
+      <meals-list [(mealList)]="listOfMeals"></meals-list>
     </div>
   </div>
+
+  
+
 </div>
