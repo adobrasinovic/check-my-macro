@@ -1,0 +1,35 @@
+<div class="ui grid container">
+  <div class="row">
+    <h3>Your meal plan</h3>
+  </div>
+  <div class="row">
+      <form [formGroup]="mealPlanForm" class="ui form"
+      (ngSubmit)="submitRecipeForAnalysis()">
+      <div class="fields">
+          <div class="field">
+              <label>Recipe title</label>
+              <input type="text" formControlName="title">
+            </div>
+            <div class="field">
+                <label>Number of servings in recipe</label>
+                <input type="number" formControlName="servings">
+            </div>
+      </div>
+     
+
+      <div class="field">
+          <label>Recipe</label>
+          <textarea formControlName="recipe"></textarea>
+        </div>
+      <button class="ui primary button" [disabled]="!mealPlanForm.valid">
+        Add
+      </button>
+    </form>
+    <div class="ui message" *ngIf="response">
+        <div class="header">
+          NutritionResponse object
+        </div>
+        {{ response | json}}
+      </div>
+  </div>
+</div>
