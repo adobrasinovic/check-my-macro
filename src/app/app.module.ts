@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import {SuiModule} from 'ng2-semantic-ui';
+import { CountUpModule } from 'countup.js-angular2';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -35,7 +36,8 @@ import { NutritionAnalysisComponent } from './components/nutrition-analysis/nutr
     SuiModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CountUpModule
   ],
   providers: [
     NutritionService
