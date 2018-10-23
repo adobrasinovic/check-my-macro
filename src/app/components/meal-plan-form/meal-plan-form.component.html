@@ -27,12 +27,7 @@
       <button class="ui primary button" [disabled]="!mealPlanForm.valid">
         Add
       </button>
+      <button class="ui primary right floated large button">Check my macros</button>
     </form>
-    <div class="ui message" *ngIf="response">
-        <div class="header">
-          NutritionResponse object
-        </div>
-        {{ response | json}}
-      </div>
   </div>
 </div>

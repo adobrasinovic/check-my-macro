@@ -10,13 +10,16 @@
   <div class="doubling two column row">
     <div class="column">
       <!-- form to enter macros, left side of the page on desktop -->
-      <macro-form></macro-form>
+      <macro-form (macrosPlanSet)="onMacrosPlanAdded($event)"></macro-form>
     </div>
     <div class="column">
       <!-- meal planning section -->
       <meal-plan-form (mealAdded)="onMealAdded($event)"></meal-plan-form>
       <meals-list [(mealList)]="listOfMeals"></meals-list>
     </div>
+  </div>
+  <div class="row">
+    <nutrition-analysis [desiredMacrosPlan]="currentMacrosPlan"></nutrition-analysis>
   </div>
 
   

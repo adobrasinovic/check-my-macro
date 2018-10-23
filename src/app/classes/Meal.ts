@@ -2,7 +2,7 @@ import { NutritionResponse } from './NutritionResponse';
 
 export class Meal {
     title: string;
-    prep: string;
+    prep: string = '';
     servings: number;
     ingrs: string[];
     nutritionInfo: NutritionResponse;

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MacrosPlan } from '../../classes/MacrosPlan';
 
 @Component({
   selector: 'macro-form',
@@ -7,15 +8,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./macro-form.component.scss']
 })
 export class MacroFormComponent implements OnInit {
-  macroForm: FormGroup;
+  @Output() macrosPlanSet: EventEmitter<MacrosPlan> = new EventEmitter();
 
-  macroSelected: boolean = false;
+  macrosForm: FormGroup;
+  macrosSelected: boolean = false;
   // values contain saved macro values and unit
-  selectedCarbsValue: number;
-  selectedProteinsValue: number;
-  selectedFatsValue: number;
+  selectedMacrosPlan: MacrosPlan;
   selectedUnitOfMeasurement: string;
-  yourMacroString: string;
+  yourMacrosString: string;
 
   // we measure macros either in percentage or in max grams intake
   unitOfMeasurement: string = '%';
@@ -24,7 +24,7 @@ export class MacroFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.createMacroForm();
+    this.createMacrosForm();
   }
 
   changeUnitOfMeasurement(value: string) {
@@ -32,42 +32,50 @@ export class MacroFormComponent implements OnInit {
   }
 
   // onformsubmit this function is called
-  saveCurrentMacro() {
+  saveCurrentMacros() {
 
-    const macroFormValue = this.macroForm.getRawValue();
+    const macrosFormValue = this.macrosForm.getRawValue();
+    this.selectedMacrosPlan = {
+      carbs: macrosFormValue.carbs,
+      fats: macrosFormValue.fats,
+      proteins: macrosFormValue.proteins,
+      unitOfMeasurement: this.unitOfMeasurement
+    };
 
-    this.macroSelected = true;
-    this.selectedCarbsValue = macroFormValue.carbs;
-    this.selectedFatsValue = macroFormValue.fats;
-    this.selectedProteinsValue = macroFormValue.proteins;
+    this.macrosSelected = true;
     this.selectedUnitOfMeasurement = this.unitOfMeasurement;
 
-    this.formMacroString();
+    this.macrosPlanSet.emit(this.selectedMacrosPlan);
+
+    this.formMacrosString();
 
   }
 
   // presenting selected macros to the user as string
-  private formMacroString() {
+  private formMacrosString() {
     const unit = this.selectedUnitOfMeasurement;
     let carbsString, fatsString, proteinsString;
+    const carbs = this.selectedMacrosPlan.carbs;
+    const fats = this.selectedMacrosPlan.fats;
+    const proteins = this.selectedMacrosPlan.proteins;
 
-    if (this.selectedCarbsValue) {
-      carbsString = ' Carbohydrates: ' + this.selectedCarbsValue + unit;
+    if (carbs) {
+      carbsString = ' Carbohydrates: ' + carbs + unit;
     }
 
-    if (this.selectedFatsValue) {
-      fatsString = ' Fats: ' + this.selectedFatsValue + unit;
+    if (fats) {
+      fatsString = ' Fats: ' + fats + unit;
     }
 
-    if (this.selectedCarbsValue) {
-      proteinsString = ' Proteins: ' + this.selectedProteinsValue + unit;
+    if (proteins) {
+      proteinsString = ' Proteins: ' + proteins + unit;
     }
 
-    this.yourMacroString = ':' + carbsString + fatsString + proteinsString;
+    this.yourMacrosString = ':' + carbsString + fatsString + proteinsString;
   }
 
-  private createMacroForm() {
-    this.macroForm = this.fb.group({
+  private createMacrosForm() {
+    this.macrosForm = this.fb.group({
       carbs: [null, Validators.min(0)],
       proteins: [null, Validators.min(0)],
       fats: [null, Validators.min(0)]

@@ -1,9 +1,7 @@
 <div class="ui grid container">
   <div class="row">
     <h3>Your macros
-      <ng-container *ngIf="macroSelected">{{': Carbohydrates: ' + selectedCarbsValue + selectedUnitOfMeasurement +
-         ' Fats: ' + selectedFatsValue + selectedUnitOfMeasurement + ' Proteins: ' + selectedProteinsValue +selectedUnitOfMeasurement }}
-      </ng-container></h3>
+      <ng-container *ngIf="macrosSelected">{{yourMacrosString}}</ng-container></h3>
   </div>
   <div class="row">
     <div class="ui top attached label">Choose your unit of measurement</div>
@@ -19,11 +17,11 @@
       <div class="header">
         You have selected 'grams' as your units of measurement
       </div>
-      <p>The values you enter are considered your 'max' macro values. You can
+      <p>The values you enter are considered your 'max' macros values. You can
         fill only the macronutrients that you want to limit.</p>
     </div>
-    <form [formGroup]="macroForm" class="ui form"
-      (ngSubmit)="saveCurrentMacro()">
+    <form [formGroup]="macrosForm" class="ui form"
+      (ngSubmit)="saveCurrentMacros()">
       <div class="fields">
         <div class="field">
           <div class="ui right labeled input">
@@ -33,7 +31,7 @@
               {{unitOfMeasurement}}
             </div>
           </div>
-          <div *ngIf="macroForm?.controls['carbs'].errors?.min" class="ui pointing basic small label">
+          <div *ngIf="macrosForm?.controls['carbs'].errors?.min" class="ui pointing basic small label">
               Value must be greater or equal to zero.
             </div>
         </div>
@@ -44,7 +42,7 @@
               {{unitOfMeasurement}}
             </div>
           </div>
-            <div *ngIf="macroForm?.controls['fats']?.errors?.min" class="ui pointing basic small label">
+            <div *ngIf="macrosForm?.controls['fats']?.errors?.min" class="ui pointing basic small label">
               Value must be greater or equal to zero.
             </div>
         </div>
@@ -56,22 +54,22 @@
               {{unitOfMeasurement}}
             </div>
           </div>
-          <div *ngIf="macroForm?.controls['proteins'].errors?.min" class="ui pointing basic small label">
+          <div *ngIf="macrosForm?.controls['proteins'].errors?.min" class="ui pointing basic small label">
               Value must be greater or equal to zero.
             </div>
         </div>
       </div>
 
-      <div *ngIf="macroForm.errors && unitOfMeasurement === '%'" class="ui message">
+      <div *ngIf="macrosForm.errors && unitOfMeasurement === '%'" class="ui message">
           <div class="header">
-            Sum of your macro percentages must be 100
+            Sum of your macros percentages must be 100
           </div>
           <p>
-            Current sum: {{ macroForm.errors.currentSum }}%.
+            Current sum: {{ macrosForm.errors.currentSum }}%.
           </p>
         </div>
 
-      <button class="ui primary button" [disabled]="!macroForm.valid">
+      <button class="ui primary button" [disabled]="!macrosForm.valid">
         Save
       </button>
     </form>

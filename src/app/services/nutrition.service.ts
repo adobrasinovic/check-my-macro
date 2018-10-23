@@ -18,7 +18,6 @@ export class NutritionService {
   constructor(private http: HttpClient) {
     const config: NutritionConfig = new NutritionConfig();
     this.baseUrl = config.url;
-    this.otherUrl = `https://api.edamam.com/api/nutrition-data?app_id=${config.appId}&app_key=${config.appKey}&ingr=1%20large%20apple`;
     this.header = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
@@ -34,8 +33,8 @@ export class NutritionService {
     );
   }
 
-  getNutritionForFood() {
-    console.log(this.otherUrl);
-    return this.http.get<any[]>(this.otherUrl);
-  }
+  // getNutritionForFood() {
+  //   console.log(this.otherUrl);
+  //   return this.http.get<any[]>(this.otherUrl);
+  // }
 }

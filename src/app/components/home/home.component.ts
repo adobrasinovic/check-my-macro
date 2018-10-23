@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { NutritionAnalysisComponent } from '../nutrition-analysis/nutrition-analysis.component';
+
 import { Meal } from '../../classes/Meal';
+import { MacrosPlan } from '../../classes/MacrosPlan';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +11,23 @@ import { Meal } from '../../classes/Meal';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(NutritionAnalysisComponent) private nutritionAnalysis: NutritionAnalysisComponent;
   listOfMeals: Meal[] = [];
+  currentMacrosPlan: MacrosPlan;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onMacrosPlanAdded(newMacrosPlan) {
+    console.log(newMacrosPlan);
+    this.currentMacrosPlan = newMacrosPlan;
+  }
+
   onMealAdded(newMeal) {
     this.listOfMeals.push(newMeal);
-    console.log(this.listOfMeals);
+    this.nutritionAnalysis.getNutritionInfoForMeal(newMeal);
   }
 
 }
