@@ -13,10 +13,12 @@ import { map } from 'rxjs/operators';
 export class NutritionService {
 
   baseUrl: string;
+  otherUrl: string;
   header: HttpHeaders;
   constructor(private http: HttpClient) {
     const config: NutritionConfig = new NutritionConfig();
     this.baseUrl = config.url;
+    this.otherUrl = `https://api.edamam.com/api/nutrition-data?app_id=${config.appId}&app_key=${config.appKey}&ingr=1%20large%20apple`;
     this.header = new HttpHeaders().set('Content-Type', 'application/json');
   }
 
@@ -30,5 +32,10 @@ export class NutritionService {
     return this.http.post<any[]>(url, query).pipe(map(
       (results) => this.convertJSONtoNutritionInfo(results))
     );
+  }
+
+  getNutritionForFood() {
+    console.log(this.otherUrl);
+    return this.http.get<any[]>(this.otherUrl);
   }
 }

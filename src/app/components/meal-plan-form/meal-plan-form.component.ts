@@ -21,7 +21,7 @@ export class MealPlanFormComponent implements OnInit {
   private createMealPlanForm() {
     this.mealPlanForm = this.fb.group({
       title: [null, Validators.required],
-      servings: [null],
+      servings: [1, Validators.required],
       recipe: [null, Validators.required]
     });
   }
