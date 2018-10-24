@@ -15,7 +15,11 @@ export class NutritionResponse {
        const servings = JSONNutritionResponse.yield;
 
         this.carbohydrates = nutritionInfo.CHOCDF.quantity / servings;
-        this.netCarbohydrates = (nutritionInfo.CHOCDF.quantity - nutritionInfo.FIBTG.quantity) / servings;
+        if (nutritionInfo.FIBTG) {
+            this.netCarbohydrates = (nutritionInfo.CHOCDF.quantity - nutritionInfo.FIBTG.quantity) / servings;
+        } else {
+            this.netCarbohydrates = nutritionInfo.CHOCDF.quantity / servings;
+        }
         this.fats = nutritionInfo.FAT.quantity / servings;
         this.proteins = nutritionInfo.PROCNT.quantity / servings;
 

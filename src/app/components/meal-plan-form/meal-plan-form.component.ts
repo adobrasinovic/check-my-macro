@@ -12,6 +12,7 @@ import { Meal } from '../../classes/Meal';
 })
 export class MealPlanFormComponent implements OnInit {
   @Output() mealAdded: EventEmitter<Meal> = new EventEmitter();
+  
   mealPlanForm: FormGroup;
   response: NutritionResponse;
 

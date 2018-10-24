@@ -1,29 +1,4 @@
-<div class="ui grid container centered">
-    <div class="ui statistics">
-        <div class="red statistic">
-          <div countUp startVal="0" endVal="25" class="value">
-          </div>
-          <div class="label">
-            Carbs
-          </div>
-        </div>
-
-        <div class="yellow statistic">
-          <div class="value">
-            28
-          </div>
-          <div class="label">
-            Ye
-          </div>
-        </div>
-     
-        <div class="green statistic">
-          <div class="value">
-            14
-          </div>
-          <div class="label">
-            Green
-          </div>
-        </div>
-      </div>
+<div class="ui grid container centered" *ngIf="carbsInfo">
+  <macro-result-panel [info]="carbsInfo"></macro-result-panel>
 </div>
+

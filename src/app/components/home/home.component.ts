@@ -20,14 +20,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onMacrosPlanAdded(newMacrosPlan) {
-    console.log(newMacrosPlan);
+  onMacrosPlanAdded(newMacrosPlan: MacrosPlan) {
     this.currentMacrosPlan = newMacrosPlan;
   }
 
-  onMealAdded(newMeal) {
-    this.listOfMeals.push(newMeal);
-    this.nutritionAnalysis.getNutritionInfoForMeal(newMeal);
+  onMealAdded(newMeal: Meal) {
+    const mealInfo =  this.nutritionAnalysis.getNutritionInfoForMeal(newMeal);
+    if (mealInfo) {
+      newMeal.nutritionInfo = mealInfo;
+      this.listOfMeals.push(newMeal);
+    }
   }
 
 }

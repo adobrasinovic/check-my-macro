@@ -29,6 +29,8 @@ export class MacroFormComponent implements OnInit {
 
   changeUnitOfMeasurement(value: string) {
     this.unitOfMeasurement = value;
+    // we need to update form validity on unit change because of different rules for grams/%
+    this.macrosForm.updateValueAndValidity();
   }
 
   // onformsubmit this function is called
@@ -54,7 +56,7 @@ export class MacroFormComponent implements OnInit {
   // presenting selected macros to the user as string
   private formMacrosString() {
     const unit = this.selectedUnitOfMeasurement;
-    let carbsString, fatsString, proteinsString;
+    let carbsString = '', fatsString = '', proteinsString = '';
     const carbs = this.selectedMacrosPlan.carbs;
     const fats = this.selectedMacrosPlan.fats;
     const proteins = this.selectedMacrosPlan.proteins;

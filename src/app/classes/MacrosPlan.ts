@@ -1,6 +1,6 @@
 export class MacrosPlan {
-    carbs: number;
-    fats: number;
-    proteins: number;
-    unitOfMeasurement: string;
+    carbs: number = 0;
+    fats: number = 0;
+    proteins: number = 0;
+    unitOfMeasurement: string = 'g';
 }

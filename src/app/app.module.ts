@@ -18,6 +18,7 @@ import { NutritionService } from './services/nutrition.service';
 import { MealPlanFormComponent } from './components/meal-plan-form/meal-plan-form.component';
 import { MealsListComponent } from './components/meals-list/meals-list.component';
 import { NutritionAnalysisComponent } from './components/nutrition-analysis/nutrition-analysis.component';
+import { MacroResultPanelComponent } from './components/macro-result-panel/macro-result-panel.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NutritionAnalysisComponent } from './components/nutrition-analysis/nutr
     MacroFormComponent,
     MealPlanFormComponent,
     MealsListComponent,
-    NutritionAnalysisComponent
+    NutritionAnalysisComponent,
+    MacroResultPanelComponent
   ],
   imports: [
     BrowserModule,
