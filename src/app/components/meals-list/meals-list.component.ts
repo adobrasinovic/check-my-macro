@@ -9,6 +9,7 @@ import { Meal } from '../../classes/Meal';
 export class MealsListComponent implements OnInit {
   @Input() mealList: Meal[];
   @Output() mealListChange: EventEmitter<Meal[]> = new EventEmitter();
+  @Output() mealRemoved: EventEmitter<Meal> = new EventEmitter();
 
   constructor() { }
 
@@ -20,6 +21,7 @@ export class MealsListComponent implements OnInit {
     if (index > -1) {
       this.mealList.splice(index, 1);
       this.mealListChange.emit(this.mealList);
+      this.mealRemoved.emit(mealToRemove);
     }
   }
 

@@ -30,6 +30,7 @@ export class NutritionAnalysisComponent implements OnInit {
   getNutritionInfoForMeal(meal: Meal): any {
     const query = {
       title: meal.title,
+      prep: meal.prep,
       yield: meal.servings + ' servings',
       ingr: meal.ingrs
     };
@@ -63,8 +64,6 @@ export class NutritionAnalysisComponent implements OnInit {
       plan = this.desiredMacrosPlan;
     }
 
-
-    this.totalMacros.calculatePercentages();
     this.showComparison = true;
 
     console.log(this.totalMacros);

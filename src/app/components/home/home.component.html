@@ -14,7 +14,7 @@
     <div class="column">
       <!-- meal planning section -->
       <meal-plan-form (mealAdded)="onMealAdded($event)"></meal-plan-form>
-      <meals-list [(mealList)]="listOfMeals"></meals-list>
+      <meals-list (mealRemoved)="onMealRemoved($event)" [(mealList)]="listOfMeals"></meals-list>
     </div>
   </div>
   <div class="row">

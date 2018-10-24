@@ -22,12 +22,23 @@ export class HomeComponent implements OnInit {
 
   onMacrosPlanAdded(newMacrosPlan: MacrosPlan) {
     this.currentMacrosPlan = newMacrosPlan;
+    this.nutritionAnalysis.totalMacros.calculatePercentages();
     this.nutritionAnalysis.fillComparisonInfo(newMacrosPlan);
   }
 
   onMealAdded(newMeal: Meal) {
     const mealInfo =  this.nutritionAnalysis.getNutritionInfoForMeal(newMeal);
     this.listOfMeals.push(newMeal);
+  }
+
+  // possibly change this function so it doesnt acces nutritionanalysis property directly
+  onMealRemoved(mealRemoved: Meal) {
+    this.nutritionAnalysis.totalMacros.carbs -= mealRemoved.nutritionInfo.carbohydrates;
+    this.nutritionAnalysis.totalMacros.netCarbs -= mealRemoved.nutritionInfo.netCarbohydrates;
+    this.nutritionAnalysis.totalMacros.proteins -= mealRemoved.nutritionInfo.proteins;
+    this.nutritionAnalysis.totalMacros.fats -= mealRemoved.nutritionInfo.fats;
+    this.nutritionAnalysis.totalMacros.calculatePercentages();
+    this.nutritionAnalysis.fillComparisonInfo();
   }
 
 }

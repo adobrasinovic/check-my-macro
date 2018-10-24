@@ -15,6 +15,10 @@ export class MacroComparison {
         this.result = macroResult;
 
         this.absDiff = this.result - this.goal;
+        if (this.goal !== 0) {
         this.percentDiff = (( this.result / this.goal ) - 1) * 100;
+        } else {
+            this.percentDiff = 0;
+        }
     }
 }
