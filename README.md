@@ -1,6 +1,9 @@
-# CheckMyMacro
+# Check My Macros
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+Personal project, using the https://www.edamam.com/ API, to analyse the recipes, the idea is to compare your desired macronutrient (macros) plan with your meal plan.
+
+# Current state
+I achieved planned basic functonalities, now I'm focusing on improving the code and writing E2E tests and fiddling with UI/UX.
 
 ## Development server
 
