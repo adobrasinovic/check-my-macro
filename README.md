@@ -5,6 +5,10 @@ Personal project, using the https://www.edamam.com/ API, to analyse the recipes,
 # Current state
 I achieved planned basic functonalities, now I'm focusing on improving the code and writing E2E tests and fiddling with UI/UX.
 
+## Demo
+
+https://aleksandar-dobrasinovic.github.io/check-my-macros/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
