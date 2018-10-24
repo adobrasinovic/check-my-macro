@@ -12,13 +12,14 @@ import { MacroComparison } from '../../classes/MacroComparison';
 })
 export class NutritionAnalysisComponent implements OnInit {
   @Input() desiredMacrosPlan: MacrosPlan;
-  totalCarbs = 0;
   totalMacros: TotalMacronutrients = new TotalMacronutrients();
 
   carbsInfo: MacroComparison;
   netCarbsInfo: MacroComparison;
   fatsInfo: MacroComparison;
   proteinsInfo: MacroComparison;
+
+  showComparison = false;
 
   constructor(private nutritionSerice: NutritionService) { }
 
@@ -35,34 +36,68 @@ export class NutritionAnalysisComponent implements OnInit {
 
     this.nutritionSerice.getNutrition(query).subscribe(
       mealInfo => {
-        this.totalCarbs += mealInfo.carbohydrates;
         this.totalMacros.carbs += mealInfo.carbohydrates;
         this.totalMacros.netCarbs += mealInfo.netCarbohydrates;
         this.totalMacros.fats += mealInfo.fats;
         this.totalMacros.proteins += mealInfo.proteins;
         this.totalMacros.calculatePercentages();
         this.fillComparisonInfo();
-        return mealInfo;
+        meal.nutritionInfo = mealInfo;
       },
       err => {
-        return false;
+        // write error logic later
       }
     );
 
   }
 
-    fillComparisonInfo() {
-      this.carbsInfo = new MacroComparison('Carbohydrates',
-       this.desiredMacrosPlan.unitOfMeasurement, this.desiredMacrosPlan.carbs, this.totalMacros.carbs);
+  fillComparisonInfo(newPlan?: MacrosPlan) {
 
-       this.netCarbsInfo = new MacroComparison('Net carbohydrates',
-       this.desiredMacrosPlan.unitOfMeasurement, this.desiredMacrosPlan.carbs, this.totalMacros.netCarbs);
+    let plan: MacrosPlan;
 
-       this.fatsInfo = new MacroComparison('Fats',
-       this.desiredMacrosPlan.unitOfMeasurement, this.desiredMacrosPlan.fats, this.totalMacros.fats);
-
-       this.proteinsInfo = new MacroComparison('Proteins',
-       this.desiredMacrosPlan.unitOfMeasurement, this.desiredMacrosPlan.proteins, this.totalMacros.proteins);
+    if (!this.desiredMacrosPlan && !newPlan) {
+      plan = new MacrosPlan();
+    } else if (newPlan) {
+      plan = newPlan;
+    } else {
+      plan = this.desiredMacrosPlan;
     }
+
+
+    this.totalMacros.calculatePercentages();
+    this.showComparison = true;
+
+    console.log(this.totalMacros);
+
+    if (plan.unitOfMeasurement === '%') {
+
+      this.carbsInfo = new MacroComparison('Carbs',
+        plan.unitOfMeasurement, plan.carbs, this.totalMacros.carbsPercent);
+
+      this.netCarbsInfo = new MacroComparison('Net carbs',
+        plan.unitOfMeasurement, plan.carbs, this.totalMacros.netCarbsPercent);
+
+      this.fatsInfo = new MacroComparison('Fats',
+        plan.unitOfMeasurement, plan.fats, this.totalMacros.fatsPercent);
+
+      this.proteinsInfo = new MacroComparison('Proteins',
+        plan.unitOfMeasurement, plan.proteins, this.totalMacros.proteinsPercent);
+
+    } else {
+
+      this.carbsInfo = new MacroComparison('Carbs',
+        plan.unitOfMeasurement, plan.carbs, this.totalMacros.carbs);
+
+      this.netCarbsInfo = new MacroComparison('Net carbs',
+        plan.unitOfMeasurement, plan.carbs, this.totalMacros.netCarbs);
+
+      this.fatsInfo = new MacroComparison('Fats',
+        plan.unitOfMeasurement, plan.fats, this.totalMacros.fats);
+
+      this.proteinsInfo = new MacroComparison('Proteins',
+        plan.unitOfMeasurement, plan.proteins, this.totalMacros.proteins);
+    }
+
+  }
 
 }

@@ -22,14 +22,12 @@ export class HomeComponent implements OnInit {
 
   onMacrosPlanAdded(newMacrosPlan: MacrosPlan) {
     this.currentMacrosPlan = newMacrosPlan;
+    this.nutritionAnalysis.fillComparisonInfo(newMacrosPlan);
   }
 
   onMealAdded(newMeal: Meal) {
     const mealInfo =  this.nutritionAnalysis.getNutritionInfoForMeal(newMeal);
-    if (mealInfo) {
-      newMeal.nutritionInfo = mealInfo;
-      this.listOfMeals.push(newMeal);
-    }
+    this.listOfMeals.push(newMeal);
   }
 
 }

@@ -10,9 +10,9 @@ export class TotalMacronutrients {
 
     calculatePercentages() {
         const sum = this.carbs + this.fats + this.proteins;
-        this.carbsPercent = this.carbs / sum;
-        this.netCarbsPercent = this.netCarbs / sum;
-        this.fatsPercent = this.fats / sum;
-        this.proteinsPercent = this.proteins / sum;
+        this.carbsPercent = this.carbs / sum * 100;
+        this.netCarbsPercent = this.netCarbs / sum * 100;
+        this.fatsPercent = this.fats / sum * 100;
+        this.proteinsPercent = this.proteins / sum * 100;
     }
 }

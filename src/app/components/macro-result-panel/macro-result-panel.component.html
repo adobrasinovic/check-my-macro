@@ -1,28 +1,29 @@
-<div class="ui internally celled grid">
-    <div class="row">
-      <div class="six wide column">
-        <div class="ui statistics">
-          <div class="blue statistic">
-            <div countUp startVal="0" [endVal]="info.result" class="value">
-            </div>
-            <div class="label">
-              {{info.name}} ({{info.unitOfMeasurement}})
-            </div>
-          </div>
+<div class="ui grid container centered">
+  <div class="row">
+    <div class="ui statistics">
+      <div class="blue small statistic">
+        <div countUp startVal="0" [endVal]="info.result" decimals="2"
+          class="value">
         </div>
-      </div>
-      <div class="ten wide column">
-        <div class="ui celled list">
-          <div class="item">
-            <strong>Goal {{info.name}}: </strong> {{info.goal}}{{info.unitOfMeasurement}}
-          </div>
-          <div class="item">
-            <strong>Absolute difference: </strong> {{info.absDiff}} {{info.unitOfMeasurement}}
-          </div>
-          <div class="item">
-            <strong>Percent difference: </strong> {{info.percentDiff}} %
-          </div>
+        <div class="label">
+          {{info.name}} ({{info.unitOfMeasurement}})
         </div>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="ui horizontal list">
+      <div class="item">
+        <strong>Goal {{info.name}}: </strong>
+        {{info.goal}}{{info.unitOfMeasurement}}
+      </div>
+      <div class="item">
+        <strong>Abs. diff: </strong> {{info.absDiff | number: '1.2-2'}}
+        {{info.unitOfMeasurement}}
+      </div>
+      <div class="item">
+        <strong>(%) diff: </strong> {{info.percentDiff | number: '1.2-2'}} %
+      </div>
+    </div>
+  </div>
+</div>

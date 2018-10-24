@@ -1,4 +1,17 @@
-<div class="ui grid container centered" *ngIf="carbsInfo">
-  <macro-result-panel [info]="carbsInfo"></macro-result-panel>
+<div *ngIf="showComparison" class="ui grid container centered">
+    <div class="ui stackable four column grid">
+        <div class="column">
+          <macro-result-panel [info]="carbsInfo"></macro-result-panel>
+        </div>
+        <div class="column">
+            <macro-result-panel [info]="netCarbsInfo"></macro-result-panel>
+        </div>
+        <div class="column">
+            <macro-result-panel [info]="fatsInfo"></macro-result-panel>
+        </div>
+        <div class="column">
+            <macro-result-panel [info]="proteinsInfo"></macro-result-panel>
+        </div>
+      </div>
 </div>
 
